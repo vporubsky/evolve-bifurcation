@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level1" xmlns:jd="http://www.sys-bio.org/sbml" level="1" version="1">
+  <annotations>
+    <jd:otherDisplayObjects>
+      <textObject name="Heinrich&apos;s 77 Model">
+        <font fontName="Arial" fontSize="10" fontColor="0"/>
+        <boundingBox x="23" y="16" w="113" h="16"/>
+      </textObject>
+      <textObject name="Has positive feedback from S2 to v2, results in instability at certain parameter values">
+        <font fontName="Arial" fontSize="10" fontColor="0"/>
+        <boundingBox x="23" y="33" w="486" h="16"/>
+      </textObject>
+    </jd:otherDisplayObjects>
+  </annotations>
+  <model name="untitled">
+    <listOfCompartments>
+      <compartment name="compartment" volume="1">
+        <annotations>
+          <jd:display>
+            <boundingBox x="0" y="0" w="0" h="0"/>
+          </jd:display>
+        </annotations>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <specie name="S1" compartment="compartment" initialAmount="0.000219621149661889" boundaryCondition="false">
+        <annotations>
+          <jd:display x="206" y="106" iconIndex="2" edgeThickness="1" edgeColor="0" selectedEdgeColor="255" fillColor="16777215" borderType="ntRound">
+            <font fontName="Arial" fontSize="10" fontColor="0"/>
+          </jd:display>
+        </annotations>
+      </specie>
+      <specie name="S2" compartment="compartment" initialAmount="2.19337766237236" boundaryCondition="false">
+        <annotations>
+          <jd:display x="122" y="170" iconIndex="3" edgeThickness="1" edgeColor="0" selectedEdgeColor="255" fillColor="16777215" borderType="ntRound">
+            <font fontName="Arial" fontSize="10" fontColor="0"/>
+          </jd:display>
+        </annotations>
+      </specie>
+      <specie name="X0" compartment="compartment" initialAmount="4.19727852695728" boundaryCondition="true">
+        <annotations>
+          <jd:display x="84" y="71" iconIndex="-1" edgeThickness="1" edgeColor="0" selectedEdgeColor="255" fillColor="16777215" borderType="ntRound">
+            <font fontName="Arial" fontSize="10" fontColor="0"/>
+          </jd:display>
+        </annotations>
+      </specie>
+      <specie name="X1" compartment="compartment" initialAmount="1.32898072335869" boundaryCondition="true">
+        <annotations>
+          <jd:display x="339" y="168" iconIndex="-1" edgeThickness="1" edgeColor="0" selectedEdgeColor="255" fillColor="16777215" borderType="ntRound">
+            <font fontName="Arial" fontSize="10" fontColor="0"/>
+          </jd:display>
+        </annotations>
+      </specie>
+      <specie name="X2" compartment="compartment" initialAmount="0.00155467240354973" boundaryCondition="true">
+        <annotations>
+          <jd:display x="234" y="229" iconIndex="-1" edgeThickness="1" edgeColor="0" selectedEdgeColor="255" fillColor="16777215" borderType="ntRound">
+            <font fontName="Arial" fontSize="10" fontColor="0"/>
+          </jd:display>
+        </annotations>
+      </specie>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter name="J0_v0" value="3.65401061730006"/>
+      <parameter name="J1_k3" value="0.52161577789032"/>
+      <parameter name="J2_q" value="3.91467855954524"/>
+      <parameter name="J2_c" value="5.25773261242494"/>
+      <parameter name="J2_k_1" value="0.00214012070877041"/>
+      <parameter name="J2_k1" value="1.11383952681611"/>
+      <parameter name="J3_k2" value="4.78671951173238"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction name="J0" reversible="false">
+        <annotations>
+          <jd:arcSeg LineThickness="1" LineColor="6587523" FillColor="0" SelectedLineColor="255">
+            <pt x="156" y="96"/>
+            <pt x="159" y="97"/>
+            <pt x="159" y="97"/>
+          </jd:arcSeg>
+        </annotations>
+        <listOfReactants>
+          <specieReference specie="X0" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="S1" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J0_v0"/>
+      </reaction>
+      <reaction name="J1" reversible="false">
+        <annotations>
+          <jd:arcSeg LineThickness="1" LineColor="0" FillColor="0" SelectedLineColor="255">
+            <pt x="281" y="145"/>
+            <pt x="281" y="145"/>
+            <pt x="285" y="148"/>
+          </jd:arcSeg>
+        </annotations>
+        <listOfReactants>
+          <specieReference specie="S1" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="X1" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J1_k3*S1"/>
+      </reaction>
+      <reaction name="J2" reversible="false">
+        <annotations>
+          <jd:arcSeg LineThickness="1" LineColor="6587523" FillColor="0" SelectedLineColor="255">
+            <pt x="174" y="143"/>
+            <pt x="175" y="144"/>
+            <pt x="175" y="144"/>
+          </jd:arcSeg>
+        </annotations>
+        <listOfReactants>
+          <specieReference specie="S1" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="S2" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="(J2_k1*S1-J2_k_1*S2)*(1+J2_c*S2^J2_q)"/>
+      </reaction>
+      <reaction name="J3" reversible="false">
+        <annotations>
+          <jd:arcSeg LineThickness="1" LineColor="6587523" FillColor="0" SelectedLineColor="255">
+            <pt x="189" y="206"/>
+            <pt x="192" y="208"/>
+            <pt x="192" y="208"/>
+          </jd:arcSeg>
+        </annotations>
+        <listOfReactants>
+          <specieReference specie="S2" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="X2" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J3_k2*S2"/>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
