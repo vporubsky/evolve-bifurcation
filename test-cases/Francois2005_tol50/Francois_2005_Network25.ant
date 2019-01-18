@@ -1,0 +1,87 @@
+// Created by libAntimony v2.9.4
+function Constant_flux__irreversible(v)
+  v;
+end
+
+function transcription_and_translation(k, X)
+  k*X;
+end
+
+
+model *MODEL1408130000()
+
+  // Compartments and Species:
+  compartment cell;
+  species A in cell, AgB in cell, gB in cell, rB in cell, B in cell, AB in cell;
+
+  // Reactions:
+  A_binds_gB: A + gB => AgB; cell*alpha*A*gB;
+  gB_releases_A: AgB => A + gB; cell*theta*AgB;
+  basal_transcription_B:  => rB; cell*transcription_and_translation(rhof, gB);
+  stim_transcription_B:  => rB; cell*transcription_and_translation(rhob, AgB);
+  degradation_mRNA_B: rB => ; cell*deltar*rB;
+  production_A:  => A; cell*Constant_flux__irreversible(rhoA);
+  degradation_A: A => ; cell*deltaA*A;
+  translation_B:  => B; cell*transcription_and_translation(beta, rB);
+  degradation_B: B => ; cell*deltaB*B;
+  formation_dimer: A + B => AB; cell*gamma*A*B;
+  degradation_dimer: AB => ; cell*deltaAB*AB;
+
+  // Species initializations:
+  A = 6.39160610065618;
+  A has mole_per_litre;
+  AgB = 0.0380876974630047;
+  AgB has mole_per_litre;
+  gB = 2.98472844819685;
+  gB has mole_per_litre;
+  rB = 0.0132046661758256;
+  rB has mole_per_litre;
+  B = 9.80869186590187;
+  B has mole_per_litre;
+  AB = 0.000516866980042417;
+  AB has mole_per_litre;
+
+  // Compartment initializations:
+  cell = 1;
+  cell has litre;
+
+  // Variable initializations:
+  theta = 0.579212268953006;
+  alpha = 0.671641301793893;
+  rhob = 1.3153478243152;
+  rhof = 0.0185910260883885;
+  deltar = 0.00925251068957012;
+  rhoA = 85.3527611878048;
+  gamma = 7.59608316221191;
+  deltaA = 0.173464596136866;
+  deltaB = 0.00251408315312119;
+  beta = 1.10493193123141;
+  deltaAB = 0.0332627906675488;
+
+  // Other declarations:
+  const cell, theta, alpha, rhob, rhof, deltar, rhoA, gamma, deltaA, deltaB;
+  const beta, deltaAB;
+
+  // Unit definitions:
+  unit length = metre;
+  unit area = metre^2;
+  unit volume = 1e-12 litre;
+  unit time_unit = time_unit;
+  unit substance = item;
+  unit extent = substance;
+  unit mole_per_litre = mole / litre;
+
+  // Display Names:
+  time_unit is "time";
+  A_binds_gB is "A binds gB";
+  gB_releases_A is "gB releases A";
+  basal_transcription_B is "basal transcription B";
+  stim_transcription_B is "stim transcription B";
+  degradation_mRNA_B is "degradation mRNA B";
+  production_A is "production A";
+  degradation_A is "degradation A";
+  translation_B is "translation B";
+  degradation_B is "degradation B";
+  formation_dimer is "formation dimer";
+  degradation_dimer is "degradation dimer";
+end
