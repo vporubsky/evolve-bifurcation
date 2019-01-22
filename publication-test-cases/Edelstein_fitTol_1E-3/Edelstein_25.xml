@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" xmlns:jd="http://www.sys-bio.org/sbml" level="2" version="1">
+  <annotation>
+    <jd:header>
+      <VersionHeader SBMLVersion="1.0"/>
+      <ModelHeader Author="Mr Untitled" ModelTitle="untitled" ModelVersion="0.0"/>
+    </jd:header>
+    <jd:display>
+      <SBMLGraphicsHeader BackGroundColor="15728639"/>
+    </jd:display>
+  </annotation>
+  <model id="untitled">
+    <listOfCompartments>
+      <compartment id="compartment" size="1">
+        <annotation>
+          <jd:display>
+            <boundingBox h="0" w="0" x="0" y="0"/>
+          </jd:display>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="X" compartment="compartment" initialConcentration="6.00967434641097" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="329" y="396">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+      <species id="E" compartment="compartment" initialConcentration="5.55230780215153" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="616" y="167">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+      <species id="C" compartment="compartment" initialConcentration="3.28547620060086" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="616" y="387">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+      <species id="A" compartment="compartment" initialConcentration="0.658415795090328" boundaryCondition="true">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="51" y="395">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+      <species id="B" compartment="compartment" initialConcentration="0.0830152855934503" boundaryCondition="true">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="881" y="381">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="Flux1_k_1" value="0.000147460958111644"/>
+      <parameter id="Flux1_k1" value="0.0965114700974819"/>
+      <parameter id="Flux2f_k2" value="0.0613400481970392"/>
+      <parameter id="Flux2r_k_2" value="0.435867334349835"/>
+      <parameter id="Flux3f_k3" value="0.100401964622962"/>
+      <parameter id="Flux3r_k_3" value="0.0799652815186746"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="Flux1" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="16777215" lineColor="0" lineThickness="1" lineType="ltBezier" selectedLineColor="255">
+            <pt x="176" y="395"/>
+            <pt x="265" y="215"/>
+            <pt x="175" y="341"/>
+            <pt x="136" y="394"/>
+            <pt x="175" y="341"/>
+            <pt x="177" y="449"/>
+            <pt x="258" y="384"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="X" stoichiometry="1"/>
+          <speciesReference species="A" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="X" stoichiometry="2"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <minus/>
+              <apply>
+                <times/>
+                <ci> A </ci>
+                <ci> X </ci>
+                <ci> Flux1_k1 </ci>
+              </apply>
+              <apply>
+                <times/>
+                <ci> X </ci>
+                <ci> X </ci>
+                <ci> Flux1_k_1 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Flux2f" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="16777215" lineColor="0" lineThickness="1" lineType="ltBezier" selectedLineColor="255">
+            <pt x="501" y="466"/>
+            <pt x="618" y="283"/>
+            <pt x="495" y="412"/>
+            <pt x="329" y="467"/>
+            <pt x="495" y="412"/>
+            <pt x="507" y="520"/>
+            <pt x="605" y="482"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="E" stoichiometry="1"/>
+          <speciesReference species="X" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> X </ci>
+              <ci> E </ci>
+              <ci> Flux2f_k2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Flux2r" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="16777215" lineColor="0" lineThickness="1" lineType="ltBezier" selectedLineColor="255">
+            <pt x="445" y="393"/>
+            <pt x="475" y="398"/>
+            <pt x="442" y="449"/>
+            <pt x="448" y="337"/>
+            <pt x="503" y="312"/>
+            <pt x="448" y="337"/>
+            <pt x="375" y="401"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="C" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="E" stoichiometry="1"/>
+          <speciesReference species="X" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> C </ci>
+              <ci> Flux2r_k_2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Flux3f" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="16777215" lineColor="0" lineThickness="1" lineType="ltBezier" selectedLineColor="255">
+            <pt x="735" y="540"/>
+            <pt x="612" y="543"/>
+            <pt x="631" y="541"/>
+            <pt x="839" y="539"/>
+            <pt x="884" y="538"/>
+            <pt x="839" y="539"/>
+            <pt x="666" y="337"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="C" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="B" stoichiometry="1"/>
+          <speciesReference species="E" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> C </ci>
+              <ci> Flux3f_k3 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Flux3r" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="16777215" lineColor="0" lineThickness="1" lineType="ltBezier" selectedLineColor="255">
+            <pt x="726" y="338"/>
+            <pt x="757" y="171"/>
+            <pt x="726" y="266"/>
+            <pt x="880" y="304"/>
+            <pt x="726" y="266"/>
+            <pt x="726" y="410"/>
+            <pt x="702" y="396"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="E" stoichiometry="1"/>
+          <speciesReference species="B" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> B </ci>
+              <ci> E </ci>
+              <ci> Flux3r_k_3 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

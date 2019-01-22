@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level2" xmlns:jd="http://www.sys-bio.org/sbml" level="2" version="1">
+  <model id="untitled">
+    <annotation>
+      <jd:header>
+        <VersionHeader SBMLVersion="1.0"/>
+        <ModelHeader Author="Mr Untitled" ModelTitle="untitled" ModelVersion="0.0"/>
+      </jd:header>
+      <jd:display>
+        <SBMLGraphicsHeader BackGroundColor="15728639"/>
+      </jd:display>
+    </annotation>
+    <listOfCompartments>
+      <compartment id="compartment" size="1">
+        <annotation>
+          <jd:display>
+            <boundingBox h="0" w="0" x="0" y="0"/>
+          </jd:display>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="X" compartment="compartment" initialConcentration="0.586714441072243" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="288" y="274">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+      <species id="R" compartment="compartment" initialConcentration="0.196481759925114" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="422" y="276">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+      <species id="E" compartment="compartment" initialConcentration="2.76010778603801" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="500" y="173">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+      <species id="EP" compartment="compartment" initialConcentration="1.08091289409101" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="336" y="173">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+      <species id="src" compartment="compartment" initialConcentration="3.32759737353569e-23" boundaryCondition="true">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="166" y="272">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+      <species id="waste" compartment="compartment" initialConcentration="3.32436282499189e-08" boundaryCondition="true">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="16777215" selectedEdgeColor="255" x="539" y="277">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </species>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="_J1_S" value="0.426203821713157"/>
+      <parameter id="_J1_k1" value="1.12841235453789"/>
+      <parameter id="_J2_ko" value="0.206940535008889"/>
+      <parameter id="_J2_kop" value="0.0236830514979197"/>
+      <parameter id="_J3_k2" value="0.623714252465453"/>
+      <parameter id="_J4_Km1" value="3.8474654799636"/>
+      <parameter id="_J4_k3" value="4.69108531323379"/>
+      <parameter id="_J5_Km2" value="0.00501363735592095"/>
+      <parameter id="_J5_k4" value="1.34412824765867"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="_J1" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="16777215" lineColor="0" lineThickness="1" lineType="ltBezier" selectedLineColor="255">
+            <pt x="203" y="280"/>
+            <pt x="200" y="282"/>
+            <pt x="190" y="280"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="src" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="X" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> _J1_k1 </ci>
+              <ci> _J1_S </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J2" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="16777215" lineColor="0" lineThickness="1" lineType="ltBezier" selectedLineColor="255">
+            <pt x="346" y="281"/>
+            <pt x="344" y="281"/>
+            <pt x="344" y="282"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="X" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="R" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> X </ci>
+              <apply>
+                <plus/>
+                <ci> _J2_kop </ci>
+                <apply>
+                  <times/>
+                  <ci> _J2_ko </ci>
+                  <ci> EP </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J3" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="16777215" lineColor="0" lineThickness="1" lineType="ltBezier" selectedLineColor="255">
+            <pt x="474" y="281"/>
+            <pt x="467" y="282"/>
+            <pt x="480" y="280"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="R" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="waste" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> _J3_k2 </ci>
+              <ci> R </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J4" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="16777215" lineColor="0" lineThickness="1" lineType="ltBezier" selectedLineColor="255">
+            <pt x="426" y="208"/>
+            <pt x="423" y="217"/>
+            <pt x="427" y="216"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="E" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="EP" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> _J4_k3 </ci>
+                <ci> R </ci>
+                <ci> E </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> _J4_Km1 </ci>
+                <ci> E </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="_J5" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="16777215" lineColor="0" lineThickness="1" lineType="ltBezier" selectedLineColor="255">
+            <pt x="416" y="153"/>
+            <pt x="373" y="150"/>
+            <pt x="464" y="145"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <speciesReference species="EP" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="E" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> _J5_k4 </ci>
+                <ci> EP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> _J5_Km2 </ci>
+                <ci> EP </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

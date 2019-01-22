@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level1" xmlns:jd="http://www.sys-bio.org/sbml" level="1" version="1">
+  <annotation>
+    <jd:header>
+      <VersionHeader SBMLVersion="1.0"/>
+      <ModelHeader Author="Mr Untitled" ModelTitle="untitled" ModelVersion="0.0"/>
+    </jd:header>
+    <jd:display>
+      <SBMLGraphicsHeader BackGroundColor="15728639"/>
+    </jd:display>
+    <jd:otherDisplayObjects>
+      <textObject name="Model from Kholodenko, EJB, 267, 1583-1588 (2000)">
+        <font fontColor="-2147483640" fontName="Arial" fontSize="12" fontStyle="B"/>
+        <boundingBox h="19" w="393" x="14" y="16"/>
+      </textObject>
+    </jd:otherDisplayObjects>
+  </annotation>
+  <model name="untitled">
+    <listOfCompartments>
+      <compartment name="compartment" volume="1">
+        <annotation>
+          <jd:display>
+            <boundingBox h="0" w="0" x="0" y="0"/>
+          </jd:display>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <specie name="MKKK" compartment="compartment" initialAmount="111.549879138087" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="10800878" iconIndex="-1" selectedEdgeColor="255" x="119" y="110">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </specie>
+      <specie name="MKKK_P" compartment="compartment" initialAmount="7.58937382691592" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="10800878" iconIndex="-1" selectedEdgeColor="255" x="257" y="110">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </specie>
+      <specie name="MKK" compartment="compartment" initialAmount="271.168730636951" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="12896486" iconIndex="-1" selectedEdgeColor="255" x="156" y="233">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </specie>
+      <specie name="MKK_P" compartment="compartment" initialAmount="3.88530300562483" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="12896486" iconIndex="-1" selectedEdgeColor="255" x="273" y="233">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </specie>
+      <specie name="MKK_PP" compartment="compartment" initialAmount="1.05738003594195" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="12896486" iconIndex="-1" selectedEdgeColor="255" x="390" y="233">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </specie>
+      <specie name="MAPK" compartment="compartment" initialAmount="440.813278124001" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="13816571" iconIndex="-1" selectedEdgeColor="255" x="244" y="354">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </specie>
+      <specie name="MAPK_P" compartment="compartment" initialAmount="1.35434915939561" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="13816571" iconIndex="-1" selectedEdgeColor="255" x="404" y="354">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </specie>
+      <specie name="MAPK_PP" compartment="compartment" initialAmount="7.67954895761778" boundaryCondition="false">
+        <annotation>
+          <jd:display borderType="ntRound" edgeColor="0" edgeThickness="1" fillColor="13816571" iconIndex="-1" selectedEdgeColor="255" x="564" y="354">
+            <font fontColor="0" fontName="Arial" fontSize="8"/>
+          </jd:display>
+        </annotation>
+      </specie>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter name="J0_K1" value="3.90405051084272"/>
+      <parameter name="J0_n" value="2.26287433654397"/>
+      <parameter name="J0_Ki" value="1.66997922230926"/>
+      <parameter name="J0_V1" value="1.99032204667018"/>
+      <parameter name="J1_KK2" value="9.12801284619128"/>
+      <parameter name="J1_V2" value="0.0403503300298206"/>
+      <parameter name="J2_KK3" value="14.373692049631"/>
+      <parameter name="J2_k3" value="0.0779790736081657"/>
+      <parameter name="J3_KK4" value="21.6345646897559"/>
+      <parameter name="J3_k4" value="0.00400862041187945"/>
+      <parameter name="J4_KK5" value="15.1839430986865"/>
+      <parameter name="J4_V5" value="0.184149813338818"/>
+      <parameter name="J5_KK6" value="20.8311483811582"/>
+      <parameter name="J5_V6" value="1.09386159621499"/>
+      <parameter name="J6_KK7" value="5.25414389292209"/>
+      <parameter name="J6_k7" value="0.0826587381248965"/>
+      <parameter name="J7_KK8" value="21.9489441759104"/>
+      <parameter name="J7_k8" value="0.148290379554211"/>
+      <parameter name="J8_KK9" value="8.81403450016842"/>
+      <parameter name="J8_V9" value="0.398202633734138"/>
+      <parameter name="J9_KK10" value="25.3236829456897"/>
+      <parameter name="J9_V10" value="0.501456285501808"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction name="J0" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="6587523" lineColor="6587523" lineThickness="0" selectedLineColor="255">
+            <pt x="198" y="78"/>
+            <pt x="199" y="70"/>
+            <pt x="200" y="70"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <specieReference specie="MKKK" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="MKKK_P" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J0_V1*MKKK/((1+(MAPK_PP/J0_Ki)^J0_n)*(J0_K1+MKKK))"/>
+      </reaction>
+      <reaction name="J1" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="6587523" lineColor="6587523" lineThickness="0" selectedLineColor="255">
+            <pt x="204" y="145"/>
+            <pt x="203" y="151"/>
+            <pt x="203" y="151"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <specieReference specie="MKKK_P" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="MKKK" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J1_V2*MKKK_P/(J1_KK2+MKKK_P)"/>
+      </reaction>
+      <reaction name="J2" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="6587523" lineColor="6587523" lineThickness="0" selectedLineColor="255">
+            <pt x="224" y="205"/>
+            <pt x="225" y="199"/>
+            <pt x="225" y="199"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <specieReference specie="MKK" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="MKK_P" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J2_k3*MKKK_P*MKK/(J2_KK3+MKK)"/>
+      </reaction>
+      <reaction name="J3" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="6587523" lineColor="6587523" lineThickness="0" selectedLineColor="255">
+            <pt x="347" y="205"/>
+            <pt x="348" y="199"/>
+            <pt x="348" y="199"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <specieReference specie="MKK_P" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="MKK_PP" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J3_k4*MKKK_P*MKK_P/(J3_KK4+MKK_P)"/>
+      </reaction>
+      <reaction name="J4" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="6587523" lineColor="6587523" lineThickness="0" selectedLineColor="255">
+            <pt x="349" y="264"/>
+            <pt x="349" y="269"/>
+            <pt x="349" y="269"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <specieReference specie="MKK_PP" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="MKK_P" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J4_V5*MKK_PP/(J4_KK5+MKK_PP)"/>
+      </reaction>
+      <reaction name="J5" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="6587523" lineColor="6587523" lineThickness="0" selectedLineColor="255">
+            <pt x="226" y="264"/>
+            <pt x="226" y="269"/>
+            <pt x="226" y="269"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <specieReference specie="MKK_P" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="MKK" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J5_V6*MKK_P/(J5_KK6+MKK_P)"/>
+      </reaction>
+      <reaction name="J6" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="6587523" lineColor="6587523" lineThickness="0" selectedLineColor="255">
+            <pt x="336" y="327"/>
+            <pt x="338" y="320"/>
+            <pt x="338" y="320"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <specieReference specie="MAPK" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="MAPK_P" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J6_k7*MKK_PP*MAPK/(J6_KK7+MAPK)"/>
+      </reaction>
+      <reaction name="J7" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="6587523" lineColor="6587523" lineThickness="0" selectedLineColor="255">
+            <pt x="503" y="326"/>
+            <pt x="505" y="320"/>
+            <pt x="505" y="320"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <specieReference specie="MAPK_P" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="MAPK_PP" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J7_k8*MKK_PP*MAPK_P/(J7_KK8+MAPK_P)"/>
+      </reaction>
+      <reaction name="J8" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="6587523" lineColor="6587523" lineThickness="0" selectedLineColor="255">
+            <pt x="506" y="380"/>
+            <pt x="505" y="385"/>
+            <pt x="505" y="385"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <specieReference specie="MAPK_PP" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="MAPK_P" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J8_V9*MAPK_PP/(J8_KK9+MAPK_PP)"/>
+      </reaction>
+      <reaction name="J9" reversible="false">
+        <annotation>
+          <jd:arcSeg fillColor="6587523" lineColor="6587523" lineThickness="0" selectedLineColor="255">
+            <pt x="339" y="380"/>
+            <pt x="338" y="385"/>
+            <pt x="338" y="385"/>
+          </jd:arcSeg>
+        </annotation>
+        <listOfReactants>
+          <specieReference specie="MAPK_P" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="MAPK" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J9_V10*MAPK_P/(J9_KK10+MAPK_P)"/>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

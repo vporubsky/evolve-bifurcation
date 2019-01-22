@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level1" xmlns:jd="http://www.sys-bio.org/sbml" level="1" version="1">
+  <model name="untitled">
+    <listOfCompartments>
+      <compartment name="compartment" volume="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <specie name="x1" compartment="compartment" initialAmount="6.85547573401895" boundaryCondition="false"/>
+      <specie name="y1" compartment="compartment" initialAmount="0.123068058622097" boundaryCondition="false"/>
+      <specie name="Node0" compartment="compartment" initialAmount="4.73340984626105" boundaryCondition="true"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter name="J0_K1" value="57.6826664692138"/>
+      <parameter name="J0_g1" value="2.31680625257405"/>
+      <parameter name="J0_mu" value="0.237026102986568"/>
+      <parameter name="J0_b1" value="245.427917818814"/>
+      <parameter name="J0_a1" value="0.102764814832415"/>
+      <parameter name="J1_K2" value="8.40042732360143"/>
+      <parameter name="J1_g2" value="3.44118702639154"/>
+      <parameter name="J1_b2" value="11.1187064996926"/>
+      <parameter name="J1_a2" value="0.542156221781299"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction name="J0" reversible="false">
+        <listOfReactants>
+          <specieReference specie="Node0" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="x1" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J0_a1*(1-x1)-J0_b1*x1*(J0_mu*y1)^J0_g1/(J0_K1+(J0_mu*y1)^J0_g1)"/>
+      </reaction>
+      <reaction name="J1" reversible="false">
+        <listOfReactants>
+          <specieReference specie="Node0" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="y1" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J1_a2*(1-y1)-J1_b2*y1*(x1)^J1_g2/(J1_K2+(x1)^J1_g2)"/>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

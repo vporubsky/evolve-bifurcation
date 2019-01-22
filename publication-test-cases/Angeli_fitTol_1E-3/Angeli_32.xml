@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level1" xmlns:jd="http://www.sys-bio.org/sbml" level="1" version="1">
+  <model name="untitled">
+    <listOfCompartments>
+      <compartment name="compartment" volume="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <specie name="x1" compartment="compartment" initialAmount="4.34806521545909" boundaryCondition="false"/>
+      <specie name="y1" compartment="compartment" initialAmount="2.46185519609243" boundaryCondition="false"/>
+      <specie name="Node0" compartment="compartment" initialAmount="1.49322874384422" boundaryCondition="true"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter name="J0_K1" value="44.3953160843319"/>
+      <parameter name="J0_g1" value="6.08820341854642"/>
+      <parameter name="J0_mu" value="0.519628465842238"/>
+      <parameter name="J0_b1" value="341.856306842315"/>
+      <parameter name="J0_a1" value="0.137484154660484"/>
+      <parameter name="J1_K2" value="7.97361430981936"/>
+      <parameter name="J1_g2" value="7.15237664143372"/>
+      <parameter name="J1_b2" value="3.90588100711275"/>
+      <parameter name="J1_a2" value="0.502696898791103"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction name="J0" reversible="false">
+        <listOfReactants>
+          <specieReference specie="Node0" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="x1" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J0_a1*(1-x1)-J0_b1*x1*(J0_mu*y1)^J0_g1/(J0_K1+(J0_mu*y1)^J0_g1)"/>
+      </reaction>
+      <reaction name="J1" reversible="false">
+        <listOfReactants>
+          <specieReference specie="Node0" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <specieReference specie="y1" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw formula="J1_a2*(1-y1)-J1_b2*y1*(x1)^J1_g2/(J1_K2+(x1)^J1_g2)"/>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
