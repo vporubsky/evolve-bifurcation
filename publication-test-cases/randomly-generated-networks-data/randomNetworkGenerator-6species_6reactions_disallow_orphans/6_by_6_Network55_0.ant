@@ -1,0 +1,30 @@
+// Created by libAntimony v2.9.4
+// Compartments and Species:
+species S0, S2, S3, $S1, $S4, $S5;
+
+// Reactions:
+_J0: $S4 + S2 -> $S5; k0*S4*S2;
+_J1: S0 -> S2; k1*S0;
+_J2: S3 -> S2 + $S1; k2*S3;
+_J3: $S4 -> $S1; k3*S4;
+_J4: $S4 -> S0; k4*S4;
+_J5: S0 -> S3; k5*S0;
+
+// Species initializations:
+S0 = 9.04230441892162;
+S2 = 1.02759532631044;
+S3 = 6.44731361271251;
+S1 = 4.51438742570544;
+S4 = 2.19372363738607;
+S5 = 3.08120500992574;
+
+// Variable initializations:
+k0 = 1.85698720030866;
+k1 = 0.466548015795953;
+k2 = 4.98564359702343;
+k3 = 1.53804744995697;
+k4 = 4.9261343110759;
+k5 = 7.36392308140221;
+
+// Other declarations:
+const k0, k1, k2, k3, k4, k5;
