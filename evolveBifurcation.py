@@ -22,15 +22,7 @@ def evolveBifurcation(model, bifurType = 'oscillator', paramRanges = None, maxGe
         SBML strings which have either an existing instance or which are saved 
         independently as files with the extension .ant or .xml and entered as 
         type str
-        
-   :Note: all local parameters must be promoted to global parameters for proper functionality.
-   :Example to obtain model with promoted parameters before calling evolveBifurcation:
-            
-   >>> import tellurium as te
-   >>> r = te.loadSBMLModel('modelName.xml')
-   >>> r = te.getParamPromotedSBML('modelName.xml')
-   >>> r = te.loadSBMLModel(r)
-        
+             
     bifurType : str
         The bifurcation type that the user wishes to optimize for - either for 
         Hopf bifurcations to evolve parameters which produce an oscillatory
@@ -108,14 +100,36 @@ def evolveBifurcation(model, bifurType = 'oscillator', paramRanges = None, maxGe
     try:
         if type(model) == str:
             if model.endswith('.xml'):
-                bifurcationModel = te.loadSBMLModel(model)      
+                try:
+                    bifurcationModel = te.loadSBMLModel(model)
+                    bmSBMLPP = bifurcationModel.getParamPromotedSBML(bifurcationModel)
+                    bifurcationModel = te.loadSBMLModel(bmSBMLPP)
+                except:
+                    print('Could not promote local parameters to global parameters. Continuing optimization without parameter promotion.')
+                    bifurcationModel = te.loadSBMLModel(model)
             elif model.endswith('.ant'):
-                bifurcationModel = te.loada(model)
+                try:
+                    bifurcationModel = te.loada(model)
+                    bmSBML = bifurcationModel.getCurrentSBML()
+                    bmSBMLPP = bifurcationModel.getParamPromotedSBML(bmSBML)
+                    bifurcationModel = te.loadSBMLModel(bmSBMLPP)
+                except:
+                    print('Could not promote local parameters to global parameters. Continuing optimization without parameter promotion.')
+                    bifurcationModel = te.loada(model)
         elif isinstance(model, RoadRunner):
-            bifurcationModel = model
+            try:
+                bifurcationModel = model
+                bmSBML = bifurcationModel.getCurrentSBML()
+                bmSBMLPP = bifurcationModel.getParamPromotedSBML(bmSBML)
+                bifurcationModel = te.loadSBMLModel(bmSBMLPP)
+            except:
+                print('Could not promote local parameters to global parameters. Continuing optimization without parameter promotion.')
+                bifurcationModel = model
         else:
             raise RuntimeError('Input not supported: pass an exisiting roadrunner.RoadRunner instance, Antimony (.ant) file, or an SBML (.xml) file.')
     except Exception as e: print(e)
+    if not bifurType in ['oscillator', 'turningPoint']:
+        raise RuntimeError("bifurType must be either 'oscillator' or 'turningPoint'.")
     bifurcationModel.reset()
     bifurcationModel.conservedMoietyAnalysis = True
     parameterList, paramValues  = generateParameterList(bifurcationModel)
@@ -140,7 +154,7 @@ def generateParameterList(bifurcationModel):
     by an assignement rule are removed.
     """
     parameterList = bifurcationModel.getGlobalParameterIds() + list(bifurcationModel.getFloatingSpeciesInitialConcentrationIds()) + bifurcationModel.getBoundarySpeciesIds()          
-    paramValues = list(bifurcationModel.getGlobalParameterValues()) + list(bifurcationModel.getFloatingSpeciesConcentrations()[0]) + list(bifurcationModel.getBoundarySpeciesConcentrations())
+    paramValues = list(bifurcationModel.getGlobalParameterValues()) + list(bifurcationModel.getFloatingSpeciesConcentrations()) + list(bifurcationModel.getBoundarySpeciesConcentrations())
     doc = tesbml.readSBMLFromString (bifurcationModel.getCurrentSBML())
     model = doc.getModel();
     lenListRules = len(model.getListOfRules())
@@ -257,7 +271,7 @@ def setModelParams(model, parameterList, parameterValues):
         model.setValue(parameter, parameterValues[idx])
     return model
 
-def steadyState(model, tolerance = 1E-15, maxIterations = 50):
+def steadyState(model, tolerance = 1E-15, maxIterations = 500):
     """
     Brings the model to steady state.
     """
@@ -420,7 +434,7 @@ def checkDETerminationCondition(numGenerations, maxGenerations, thresholdType, t
     """
     if numGenerations == maxGenerations:
         return True
-    elif (np.average(populationFitness)*1E-3 / np.std(populationFitness)) >= 1.0:
+    elif (np.average(populationFitness)*1E-6 / np.std(populationFitness)) >= 1.0:
         return True
     elif thresholdType == 'eigenvalue' and checkBestEigenvals(realComponent, imaginaryComponent, bifurType) <= threshold:
         return True
@@ -475,10 +489,7 @@ def BFGS(objFunc, initialGuess, parameterRanges, maxIterations = 100, tol = 1E-2
             if updatedGuess[i] < parameterRanges[i][0] or updatedGuess[i] > parameterRanges[i][1]:
                 return currentGuess, currentFitness
         yk = approximateGradient(updatedGuess, objFunc, approxGradientArguments = BFGSArguments) - approximateGradient(currentGuess, objFunc, approxGradientArguments = BFGSArguments)
-        try:
-            updatedHessian = currentHessian + (np.dot(yk, np.transpose(yk))/np.dot(np.transpose(yk), sk)) - (np.dot(np.dot(currentHessian,sk), np.dot(np.transpose(sk), currentHessian))/np.dot(np.dot(np.transpose(sk),currentHessian), sk))
-        except:
-            return currentGuess, currentFitness
+        updatedHessian = currentHessian + (np.dot(yk, np.transpose(yk))/np.dot(np.transpose(yk), sk)) - (np.dot(np.dot(currentHessian,sk), np.dot(np.transpose(sk), currentHessian))/np.dot(np.dot(np.transpose(sk),currentHessian), sk))
         currentGuess = updatedGuess
         currentFitness = objFunc(currentGuess, *BFGSArguments)
         currentHessian = updatedHessian
