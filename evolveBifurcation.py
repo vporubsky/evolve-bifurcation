@@ -3,11 +3,11 @@ import tesbml
 from roadrunner import RoadRunner
 import numpy as np
 import sys
-def evolveBifurcation(model, bifurType = 'oscillator', paramRanges = None, maxGenerations = 100, numMembers = 50, mutationConst = 0.5, recombinationConst = 0.5, thresholdType = 'fitness', threshold = 0.1, localMin = False, displayOpt = False):    
+def evolveBifurcation(model, bifurType = 'oscillator', parameterList = None, paramRanges = None, maxGenerations = 100, numMembers = 50, mutationConst = 0.5, recombinationConst = 0.5, thresholdType = 'fitness', threshold = 0.1, localMin = False, displayOpt = False):    
     """
     Author: Veronica Porubsky
 
-    evolveBifurcation(model, bifurType = 'oscillator', paramRanges = None, maxGenerations = 100, numMembers = 50, mutationConst = 0.5, recombinationConst = 0.5, thresholdType = 'fitness', threshold = 0.1, localMin = False, displayOpt = False)
+    evolveBifurcation(model, bifurType = 'oscillator', parameterList = None, paramRanges = None, maxGenerations = 100, numMembers = 50, mutationConst = 0.5, recombinationConst = 0.5, thresholdType = 'fitness', threshold = 0.1, localMin = False, displayOpt = False)
     ======================
     
     The module will evolve global parameters, floating species initial 
@@ -30,6 +30,15 @@ def evolveBifurcation(model, bifurType = 'oscillator', paramRanges = None, maxGe
         parameters that may generate bistability. Should select either:
             - 'oscillator'
             - 'turningPoint'
+
+    parameterList : list
+        parameterList specifies the parameters to be optimized. If the model 
+        contains parameters named k1, k3_deg, and k5, which the user wishes to
+        optimize, these should be entered as follows: 
+        parameterList = ['k1', 'k3_deg', 'k5']. The default value is 
+        parameterList = None, in which the algorithm automatically optimizes
+        all global parameters and all floating and boundary species initial
+        conditions.
         
     paramRanges : sequence
         paramRanges imposes a minimum and maximum on the range of values 
@@ -132,7 +141,7 @@ def evolveBifurcation(model, bifurType = 'oscillator', paramRanges = None, maxGe
         raise RuntimeError("bifurType must be either 'oscillator' or 'turningPoint'.")
     bifurcationModel.reset()
     bifurcationModel.conservedMoietyAnalysis = True
-    parameterList, paramValues  = generateParameterList(bifurcationModel)
+    parameterList, paramValues  = generateParameterList(bifurcationModel, parameterList)
     if paramRanges:
         if len(paramRanges) == 1:
             paramRanges = paramRanges*len(parameterList)
@@ -145,7 +154,7 @@ def evolveBifurcation(model, bifurType = 'oscillator', paramRanges = None, maxGe
     bifurcationModel = setModelParams(bifurcationModel, parameterList,  bifurcationOptParams)
     return bifurcationModel, fitness
 
-def generateParameterList(bifurcationModel):
+def generateParameterList(bifurcationModel, parameterList=None):
     """
     Generates a list of global parameters, floating and boundary species, and 
     a second list containing the current values for these parameters in the 
@@ -153,8 +162,13 @@ def generateParameterList(bifurcationModel):
     conserved moiety analysis is employed, are removed. Parameters defined
     by an assignement rule are removed.
     """
-    parameterList = bifurcationModel.getGlobalParameterIds() + list(bifurcationModel.getFloatingSpeciesInitialConcentrationIds()) + bifurcationModel.getBoundarySpeciesIds()          
-    paramValues = list(bifurcationModel.getGlobalParameterValues()) + list(bifurcationModel.getFloatingSpeciesConcentrations()) + list(bifurcationModel.getBoundarySpeciesConcentrations())
+    if not parameterList:
+        parameterList = bifurcationModel.getGlobalParameterIds() + list(bifurcationModel.getFloatingSpeciesInitialConcentrationIds()) + bifurcationModel.getBoundarySpeciesIds()          
+        paramValues = list(bifurcationModel.getGlobalParameterValues()) + list(bifurcationModel.getFloatingSpeciesConcentrations()) + list(bifurcationModel.getBoundarySpeciesConcentrations())
+    else:
+        paramValues = []
+        for parameter in parameterList:
+            paramValues.append(bifurcationModel.getValue(parameter))
     doc = tesbml.readSBMLFromString (bifurcationModel.getCurrentSBML())
     model = doc.getModel();
     lenListRules = len(model.getListOfRules())
@@ -182,7 +196,7 @@ def generateParameterRanges(paramValues):
     for i in range(len(paramValues)):
         if paramValues[i] == 0.0:
             paramRanges[i] = (1E-25, 10.0)
-        elif paramValues[i] <= 10.0:
+        elif paramValues[i] <= 10.0 and not paramValues[i] < 0.0:
             paramRanges[i] = (paramValues[i]/10.0, 10.0)
         elif paramValues[i] > 10.0:
             paramRanges[i] = (paramValues[i]/10.0, 2*paramValues[i])
@@ -327,7 +341,7 @@ def differentialEvolution(objFunc, parameterRanges, maxGenerations = 100, crosso
     a defined threshold.
     """
     bifurcationModel, bifurType, parameterList = differentialEvArguments[0:3]
-    populationArray = [[] for ai in range(populationSize)]
+    populationArray = [[] for member in range(populationSize)]
     populationFitness = np.zeros(populationSize)
     rejectPop = 0
     for i in range(populationSize):
