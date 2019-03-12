@@ -3,11 +3,11 @@ import tesbml
 from roadrunner import RoadRunner
 import numpy as np
 import sys
-def evolveBifurcation(model, bifurType = 'oscillator', parameterList = None, paramRanges = None, maxGenerations = 100, numMembers = 50, mutationConst = 0.5, recombinationConst = 0.5, thresholdType = 'fitness', threshold = 0.1, localMin = False, displayOpt = False):    
+def evolveBifurcation(model, bifurType = 'oscillator', parameterList = None, paramRanges = None, maxGenerations = 100, numMembers = 50, mutationConst = 0.5, recombinationConst = 0.5, thresholdType = 'fitness', threshold = 5.0, localMin = False, displayOpt = False):    
     """
     Author: Veronica Porubsky
 
-    evolveBifurcation(model, bifurType = 'oscillator', parameterList = None, paramRanges = None, maxGenerations = 100, numMembers = 50, mutationConst = 0.5, recombinationConst = 0.5, thresholdType = 'fitness', threshold = 0.1, localMin = False, displayOpt = False)
+    evolveBifurcation(model, bifurType = 'oscillator', parameterList = None, paramRanges = None, maxGenerations = 100, numMembers = 50, mutationConst = 0.5, recombinationConst = 0.5, thresholdType = 'fitness', threshold = 5.0, localMin = False, displayOpt = False)
     ======================
     
     The module will evolve global parameters, floating species initial 
@@ -285,7 +285,7 @@ def setModelParams(model, parameterList, parameterValues):
         model.setValue(parameter, parameterValues[idx])
     return model
 
-def steadyState(model, tolerance = 1E-15, maxIterations = 500):
+def steadyState(model, tolerance = 1E-15, maxIterations = 50):
     """
     Brings the model to steady state.
     """
