@@ -40,11 +40,16 @@ def evolveBifurcation(model, bifurType = 'oscillator', parameterList = None, par
         all global parameters and all floating and boundary species initial
         conditions.
         
-    paramRanges : sequence
+    paramRanges : list of tuples
         paramRanges imposes a minimum and maximum on the range of values 
         that the parameters being optimized can be assigned. Should be entered 
-        as follows: paramRanges = (lower bound, upper bound). The lower and 
-        upper bound should both of type float.
+        as follows: paramRanges = [(lower bound, upper bound)]. The lower and 
+        upper bound should both of type float. If the user wishes to assign
+        unique parameter ranges for each parameter being optimized, they must
+        ensure that the length of the paramRanges list is the same as the length
+        of the parameterList. For example, if the user wishes to independently
+        specify three parameter ranges for parameterList = ['k1', 'k3_deg', 'k5'], 
+        they must enter paramRanges = [(0.1, 10.0), (0.5, 1.0), (5.0, 10.0)].
         
     maxGenerations : int
         maxGenerations sets the determines the maximum number of generations 
